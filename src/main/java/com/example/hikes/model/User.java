@@ -1,4 +1,4 @@
-package com.example.hikes.dto;
+package com.example.hikes.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

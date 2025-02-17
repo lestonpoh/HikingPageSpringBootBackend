@@ -1,4 +1,5 @@
-package com.example.hikes.dto;
+package com.example.hikes.model;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,27 +9,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
-@Document(collection ="hike" )
+@Document(collection = "reply")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Hike {
+public class Reply {
     @Id
     private ObjectId id;
     @DocumentReference
     private User userID;
-    private String name;
     private String description;
-    private String location;
-    private int elevation;
-    private int difficulty;
-    private double duration;
-    @DocumentReference
-    private List<Comment> commentIds;
-    private Date createdAt;
-
-
+    private LocalDateTime createdAt;
 }

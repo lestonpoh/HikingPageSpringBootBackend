@@ -1,4 +1,4 @@
-package com.example.hikes.dto;
+package com.example.hikes.model;
 
 
 import lombok.AllArgsConstructor;
@@ -9,7 +9,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import java.util.Date;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Document(collection = "comment")
@@ -22,6 +23,7 @@ public class Comment {
     @DocumentReference
     private User userID;
     private String description;
+    @DocumentReference
     private List<Reply> replyIds;
-    private Date CreatedAt;
+    private LocalDateTime createdAt;
 }
