@@ -1,6 +1,8 @@
 package com.example.hikes.model;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Comment {
     @Id
+    @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
     @DocumentReference
     private User userID;

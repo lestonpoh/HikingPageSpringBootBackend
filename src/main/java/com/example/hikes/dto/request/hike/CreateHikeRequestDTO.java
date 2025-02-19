@@ -16,5 +16,4 @@ public class CreateHikeRequestDTO {
     private int elevation;
     private int difficulty;
     private double duration;
-    private LocalDateTime createdAt;
 }

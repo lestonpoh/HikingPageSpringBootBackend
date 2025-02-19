@@ -1,4 +1,4 @@
-package com.example.hikes.dto.hike;
+package com.example.hikes.dto.response.hike;
 
 
 import lombok.AllArgsConstructor;
