@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/comment")
 public class CommentController {
     @Autowired
-    private CommentService commentService;
+    CommentService commentService;
 
     @PostMapping
     public ResponseEntity<Comment> createComment(@RequestBody CreateCommentRequestDTO createCommentRequestDTO){
-        return new ResponseEntity<Comment>(commentService.createComment(createCommentRequestDTO), HttpStatus.OK);
+        return new ResponseEntity<>(commentService.createComment(createCommentRequestDTO), HttpStatus.OK);
     }
 
 }

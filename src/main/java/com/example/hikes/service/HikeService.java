@@ -9,7 +9,6 @@ import com.example.hikes.repository.HikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,10 +16,10 @@ import java.util.stream.Collectors;
 public class HikeService {
 
     @Autowired
-    private HikeRepository hikeRepository;
+    HikeRepository hikeRepository;
 
     @Autowired
-    private HikeMapper hikeMapper;
+    HikeMapper hikeMapper;
 
     public List<HikeSummaryResponseDTO> getAllHikes(){
         return hikeRepository.findAllHikes().stream()

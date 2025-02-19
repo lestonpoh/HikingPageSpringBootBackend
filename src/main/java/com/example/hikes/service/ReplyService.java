@@ -25,7 +25,7 @@ public class ReplyService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public Reply createReply(CreateReplyRequestDTO createReplyRequestDTO){
+    public void createReply(CreateReplyRequestDTO createReplyRequestDTO){
         Reply reply = replyRepository.insert(replyMapper.toDocument(createReplyRequestDTO));
 
         mongoTemplate.update(Comment.class)
@@ -33,6 +33,5 @@ public class ReplyService {
                 .apply(new Update().push("replyIds").value(reply))
                 .first();
 
-        return reply;
     }
 }

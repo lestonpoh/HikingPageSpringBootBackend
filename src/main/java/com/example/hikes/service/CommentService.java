@@ -11,18 +11,17 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 
 @Service
 public class CommentService {
     @Autowired
-    private CommentRepository commentRepository;
+    CommentRepository commentRepository;
 
     @Autowired
-    private CommentMapper commentMapper;
+    CommentMapper commentMapper;
 
     @Autowired
-    private MongoTemplate mongoTemplate;
+    MongoTemplate mongoTemplate;
 
     public Comment createComment(CreateCommentRequestDTO createCommentRequestDTO){
         Comment comment = commentRepository.insert(commentMapper.toDocument(createCommentRequestDTO));

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Component
 public class CommentMapper {
     @Autowired
-    private ReplyMapper replyMapper;
+    ReplyMapper replyMapper;
 
     public CommentDTO toCommentDTO(Comment comment){
         return new CommentDTO(

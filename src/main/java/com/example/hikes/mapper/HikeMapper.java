@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Component
 public class HikeMapper {
     @Autowired
-    private CommentMapper commentMapper;
+    CommentMapper commentMapper;
 
     public HikeSummaryResponseDTO toHikeSummaryDTO(Hike hike){
         return new HikeSummaryResponseDTO(
@@ -25,7 +25,7 @@ public class HikeMapper {
         );
     }
 
-    public HikeDetailsResponseDTO toHikeDetailsDTO(Hike hike){;
+    public HikeDetailsResponseDTO toHikeDetailsDTO(Hike hike){
         return new HikeDetailsResponseDTO(
                 hike.getName(),
                 hike.getDescription(),

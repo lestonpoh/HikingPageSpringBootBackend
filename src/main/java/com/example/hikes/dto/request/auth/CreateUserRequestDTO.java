@@ -1,5 +1,6 @@
 package com.example.hikes.dto.request.auth;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateUserRequestDTO {
-    private String userName;
+    @NotBlank
+    private String username;
+    @NotBlank
     private String email;
+    @NotBlank
     private String password;
 }
