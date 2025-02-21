@@ -24,7 +24,7 @@ public class Comment {
     @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
     @DocumentReference
-    private User userID;
+    private User userId;
     private String description;
     @DocumentReference
     private List<Reply> replyIds;

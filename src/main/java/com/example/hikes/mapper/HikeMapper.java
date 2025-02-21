@@ -4,6 +4,7 @@ import com.example.hikes.dto.response.hike.HikeDetailsResponseDTO;
 import com.example.hikes.dto.response.hike.HikeSummaryResponseDTO;
 import com.example.hikes.dto.request.hike.CreateHikeRequestDTO;
 import com.example.hikes.model.Hike;
+import com.example.hikes.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,9 +41,9 @@ public class HikeMapper {
         );
     }
 
-    public Hike toDocument(CreateHikeRequestDTO createHikeRequestDTO){
+    public Hike toDocument(CreateHikeRequestDTO createHikeRequestDTO, User user){
         Hike hike = new Hike();
-        //  remember to add userId after jwt setup
+        hike.setUserId(user);
         hike.setName(createHikeRequestDTO.getName());
         hike.setDescription(createHikeRequestDTO.getDescription());
         hike.setLocation(createHikeRequestDTO.getLocation());

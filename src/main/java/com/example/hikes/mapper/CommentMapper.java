@@ -4,6 +4,7 @@ package com.example.hikes.mapper;
 import com.example.hikes.dto.request.comment.CreateCommentRequestDTO;
 import com.example.hikes.dto.response.comment.CommentDTO;
 import com.example.hikes.model.Comment;
+import com.example.hikes.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,7 @@ public class CommentMapper {
     public CommentDTO toCommentDTO(Comment comment){
         return new CommentDTO(
                 comment.getId(),
-                "tempuser",
+                comment.getUserId().getUsername(),
                 comment.getDescription(),
                 comment.getReplyIds()
                     .stream()
@@ -28,9 +29,9 @@ public class CommentMapper {
         );
     }
 
-    public Comment toDocument(CreateCommentRequestDTO createCommentRequestDTO){
+    public Comment toDocument(CreateCommentRequestDTO createCommentRequestDTO, User user){
         Comment comment = new Comment();
-//      //  remember to add userId after jwt setup
+        comment.setUserId(user);
         comment.setDescription(createCommentRequestDTO.getDescription());
         comment.setCreatedAt(LocalDateTime.now());
 

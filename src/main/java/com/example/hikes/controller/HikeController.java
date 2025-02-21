@@ -5,9 +5,14 @@ import com.example.hikes.dto.response.hike.HikeSummaryResponseDTO;
 import com.example.hikes.dto.request.hike.CreateHikeRequestDTO;
 import com.example.hikes.model.Hike;
 import com.example.hikes.service.HikeService;
+import com.example.hikes.util.CookieUtil;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -31,8 +36,16 @@ public class HikeController {
     }
 
     @PostMapping
-    public ResponseEntity<Hike> createHike(@RequestBody CreateHikeRequestDTO createHikeRequestDTO) {
-        return new ResponseEntity<>(hikeService.createHike(createHikeRequestDTO), HttpStatus.OK);
+    public ResponseEntity<String> createHike(@RequestBody @Valid CreateHikeRequestDTO createHikeRequestDTO, BindingResult bindingResult, HttpServletRequest request) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body("Validation failed");
+        }
+
+        String accessToken = CookieUtil.getCookieValue(request,"accessToken");
+        hikeService.createHike(createHikeRequestDTO, accessToken);
+
+        return ResponseEntity.ok().body("Hike created successfully.");
+
 
     }
 }

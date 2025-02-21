@@ -2,6 +2,8 @@ package com.example.hikes.controller;
 
 import com.example.hikes.dto.request.reply.CreateReplyRequestDTO;
 import com.example.hikes.service.ReplyService;
+import com.example.hikes.util.CookieUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +20,14 @@ public class ReplyController {
     ReplyService replyService;
 
     @PostMapping
-    public ResponseEntity<String> createReply(@RequestBody @Valid CreateReplyRequestDTO createReplyRequestDTO, BindingResult bindingResult){
+    public ResponseEntity<String> createReply(@RequestBody @Valid CreateReplyRequestDTO createReplyRequestDTO, BindingResult bindingResult, HttpServletRequest request){
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body("Validation failed");
         }
 
-        replyService.createReply(createReplyRequestDTO);
+        String accessToken = CookieUtil.getCookieValue(request,"accessToken");
+
+        replyService.createReply(createReplyRequestDTO, accessToken);
         return ResponseEntity.ok("Reply created successfully");
     }
 }

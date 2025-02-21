@@ -22,7 +22,7 @@ public class Hike {
     @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
     @DocumentReference
-    private User userID;
+    private User userId;
     private String name;
     private String description;
     private String location;

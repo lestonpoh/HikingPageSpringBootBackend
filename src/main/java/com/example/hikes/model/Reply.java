@@ -23,7 +23,7 @@ public class Reply {
     @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
     @DocumentReference
-    private User userID;
+    private User userId;
     private String description;
     private LocalDateTime createdAt;
 }

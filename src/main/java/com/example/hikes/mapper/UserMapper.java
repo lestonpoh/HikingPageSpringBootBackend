@@ -2,6 +2,7 @@ package com.example.hikes.mapper;
 
 import com.example.hikes.dto.request.auth.CreateUserRequestDTO;
 
+import com.example.hikes.dto.response.auth.LoginResponseDTO;
 import com.example.hikes.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +19,14 @@ public class UserMapper {
         user.setUsername(createUserRequestDTO.getUsername());
         user.setEmail(createUserRequestDTO.getEmail());
         user.setPassword(encoder.encode(createUserRequestDTO.getPassword()));
+        user.setIsAdmin(false);
         return user;
+    }
+
+    public LoginResponseDTO toLoginResponseDTO(User user){
+        return new LoginResponseDTO(
+                user.getUsername(),
+                user.getIsAdmin()
+        );
     }
 }
