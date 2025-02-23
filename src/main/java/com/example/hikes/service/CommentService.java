@@ -18,6 +18,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class CommentService {
@@ -51,7 +53,7 @@ public class CommentService {
             throw new UnauthorizedException("Unauthorized");
         }
 
-        Hike hike = hikeRepository.findByName(createCommentRequestDTO.getHikeName());
+        Hike hike = hikeRepository.findById(createCommentRequestDTO.getHikeId()).orElse(null);
         if (hike != null){
             User user = userRepository.findById(userId)
                     .orElseThrow(() -> new UnauthorizedException("Unauthorized"));

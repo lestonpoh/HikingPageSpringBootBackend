@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGeneralException(Exception ex){
+        System.out.println(ex);
         return ResponseEntity.internalServerError().body(ex.getMessage());
     }
 

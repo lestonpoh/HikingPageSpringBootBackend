@@ -28,6 +28,7 @@ public class HikeMapper {
 
     public HikeDetailsResponseDTO toHikeDetailsDTO(Hike hike){
         return new HikeDetailsResponseDTO(
+                hike.getId(),
                 hike.getName(),
                 hike.getDescription(),
                 hike.getLocation(),

@@ -6,17 +6,16 @@ import com.example.hikes.dto.request.auth.LoginRequestDTO;
 import com.example.hikes.dto.response.auth.LoginResponseDTO;
 import com.example.hikes.dto.service.LoginServiceDTO;
 import com.example.hikes.service.AuthService;
+import com.example.hikes.util.CookieUtil;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -54,5 +53,11 @@ public class AuthController {
         response.addCookie(cookie);
 
         return ResponseEntity.ok("Logged out successfully.");
+    }
+
+    @GetMapping("/validateUser")
+    public ResponseEntity<LoginResponseDTO> validateUser(HttpServletRequest request){
+        String accessToken = CookieUtil.getCookieValue(request,"accessToken");
+        return ResponseEntity.ok().body(authService.validateUser(accessToken));
     }
 }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReplyDTO {
-    private String userName;
+    private String username;
     private String description;
     private LocalDateTime CreatedAt;
 }

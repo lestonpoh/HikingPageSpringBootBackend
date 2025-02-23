@@ -17,7 +17,7 @@ import java.util.List;
 public class CommentDTO {
     @JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
-    private String userName;
+    private String username;
     private String description;
     private List<ReplyDTO> replies;
     private LocalDateTime CreatedAt;

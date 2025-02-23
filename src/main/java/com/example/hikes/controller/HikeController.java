@@ -36,7 +36,7 @@ public class HikeController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createHike(@RequestBody @Valid CreateHikeRequestDTO createHikeRequestDTO, BindingResult bindingResult, HttpServletRequest request) {
+    public ResponseEntity<String> createHike(@ModelAttribute @Valid CreateHikeRequestDTO createHikeRequestDTO, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body("Validation failed");
         }
